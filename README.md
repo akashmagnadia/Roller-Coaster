@@ -35,4 +35,4 @@ r group6 --> remove 'group6' from the queue
 d --> display all the groups in the queue  
 ride --> trys to fill as many people as possible on the Roller Coaster.   
 
-# Note: 'group2' with 19 people and 'group4' will with one person will go on the Roller Coaster. It skips 'group3' as there is only one seat remaining while, they have two people in their group.  
+Note: 'group2' with 19 people and 'group4' will with one person will go on the Roller Coaster. It skips 'group3' as there is only one seat remaining while, they have two people in their group.  
