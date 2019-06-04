@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RollerCoaster
 {
@@ -60,7 +56,7 @@ namespace RollerCoaster
             printGroup(temp);
         }
 
-       
+
 
         public void removeGroupForRide(int seatCapacity)
         {
@@ -69,6 +65,13 @@ namespace RollerCoaster
             node tempHead = this.head;
             int currentPeople = 0;
             String currentGroup = "";
+
+            if (tempHead == null)
+            {
+                Console.WriteLine("There are no groups in the queue waiting for the Roller Coaster ride.");
+                Console.WriteLine("");
+                return;
+            }
 
             currentGroup = tempHead.groupName;
             currentPeople = tempHead.adults + tempHead.children;
@@ -81,7 +84,8 @@ namespace RollerCoaster
                     seatOccupied += currentPeople;
                     removeGroup(currentGroup, true);
                     tempHead = this.head;
-                } else
+                }
+                else
                 {
                     tempHead = tempHead.next;
                 }
@@ -120,21 +124,21 @@ namespace RollerCoaster
             node temp = this.head;
             while (temp.next != null)
             {
-                if (temp.groupName == name)
+                if (temp.next.groupName == name)
                 {
                     temp.next = temp.next.next;
+                    if (forRide)
+                    {
+                        Console.WriteLine("The group '" + name + "' is going for a ride on the Roller Coaster");
+                        printGroup(temp.next);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Successfully removed '" + name + "' from the queue");
+                    }
+                    return;
                 }
                 temp = temp.next;
-            }
-
-            if (forRide)
-            {
-                Console.WriteLine("The group '" + temp.groupName + "' is going for a ride on the Roller Coaster");
-                printGroup(temp);
-            }
-            else
-            {
-                Console.WriteLine("Successfully removed '" + name + "' from the queue");
             }
         }
 
@@ -187,7 +191,9 @@ namespace RollerCoaster
         {
             if (this.head == null)
             {
-                Console.WriteLine("There is no group waiting in the line for the Roller Coaster");
+                Console.WriteLine("There are no groups in the queue waiting for the Roller Coaster ride.");
+                Console.WriteLine("");
+                return;
             }
 
             Console.WriteLine("");
@@ -207,7 +213,8 @@ namespace RollerCoaster
                     if (temp.bribedTimes == 1)
                     {
                         Console.WriteLine("   Bribed the worker one time.");
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("   Bribed the worker " + temp.bribedTimes + " times.");
                     }
@@ -255,7 +262,7 @@ namespace RollerCoaster
                 Console.WriteLine("");
                 return;
             }
-            
+
             while (temp.next.next != null)
             {
                 if (temp.next.next.groupName == name)
